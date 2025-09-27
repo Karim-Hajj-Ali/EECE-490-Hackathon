@@ -2,6 +2,8 @@
 
 By; Karim Zarzour, Karim Hajj Ali, Tarek El Mourad
 
+We decided to attempt the bankruptcy risk predictor after finishing the basic implementation of the customer support ticket analyzer.
+
 Bankruptcy Risk (Next-Year) — ML Predictor
 
 Predict whether a public company will be failed next year (t+1) from its year-t financial features (X1..X18).
