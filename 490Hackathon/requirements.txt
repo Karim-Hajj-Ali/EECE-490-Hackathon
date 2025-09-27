@@ -1,0 +1,8 @@
+catboost>=1.2.5
+scikit-learn>=1.4
+pandas>=2.0
+numpy>=1.26
+gradio>=4.0
+matplotlib>=3.8
+xlsxwriter>=3.1
+openpyxl>=3.1
