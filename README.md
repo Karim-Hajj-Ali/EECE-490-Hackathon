@@ -38,21 +38,37 @@ Rows without a known t+1 record are excluded from training/evaluation.
 Project structure
 .
 ├── src/bankruptcy/
+
 │   ├── data.py           # load CSV, build next-year labels, time split, arrays
+
 │   ├── model.py          # CatBoost training, metrics, artifact saving
+
 │   ├── thresholds.py     # F1-opt + cost-sensitive threshold helpers
+
 │   └── app.py            # Gradio UI builder (manual X1..X18 + threshold)
+
 ├── scripts/
+
 │   ├── train.py          # CLI: train + save model + metadata
+
 │   ├── serve.py          # CLI: serve GUI (manual inputs)
+
 │   └── evaluate.py       # CLI: batch evaluation + scored output
+
 ├── models/               # (gitignored) trained artifacts (.cbm, metadata.json)
+
 ├── data/                 # (you place input files here)
+
 ├── Dockerfile
+
 ├── docker/entrypoint.sh  # container entrypoint (train/serve/evaluate)
+
 ├── docker-compose.yml
+
 ├── requirements.txt
+
 ├── README.md
+
 └── scored.xlsx           # contains predictions from uploaded dataset
 
 
