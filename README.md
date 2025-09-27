@@ -80,13 +80,37 @@ pip install -r requirements.txt
 
 # Train (expects .\data\american_bankruptcy.csv)
 python -m scripts.train --csv .\data\american_bankruptcy.csv --outdir models
+# Run this on the terminal to train:
+$PWDPath = (Get-Location).Path
+docker run --rm `
+  --entrypoint python `
+  -v "$PWDPath\data:/data:ro" `
+  -v "$PWDPath\models:/models" `
+  bankruptcy-predictor:latest `
+  -m scripts.train --csv /data/american_bankruptcy.csv --outdir /models
 
 # Serve GUI at http://localhost:7860
 python -m scripts.serve --model models\catboost_bankruptcy.cbm --meta models\metadata.json
+# Run this on the terminal to serve:
+$PWDPath = (Get-Location).Path
+docker run --rm -p 7860:7860 `
+  --entrypoint python `
+  -v "$PWDPath\models:/models" `
+  bankruptcy-predictor:latest `
+  -m scripts.serve --model /models/catboost_bankruptcy.cbm --meta /models/metadata.json
 
 # Batch evaluate (scores CSV/XLSX and writes output)
 python -m scripts.evaluate --input .\data\american_bankruptcy.csv --model models\catboost_bankruptcy.cbm --meta models\metadata.json --out .\scored.xlsx
 
+# Run this on the terminal to evaluate:
+$PWDPath = (Get-Location).Path
+docker run --rm `
+  --entrypoint python `
+  -v "$PWDPath\data:/data" `
+  -v "${PWDPath}:/out" `
+  -v "$PWDPath\models:/models" `
+  bankruptcy-predictor:latest `
+  -m scripts.evaluate --input /data/american_bankruptcy.csv --model /models/catboost_bankruptcy.cbm --meta /models/metadata.json --out /out/scored.xlsx
 # macOS/Linux
 python -m venv .venv
 source .venv/bin/activate
