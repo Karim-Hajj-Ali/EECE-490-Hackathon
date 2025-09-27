@@ -2,7 +2,7 @@
 
 By; Karim Zarzour, Karim Hajj Ali, Tarek El Mourad
 
-We decided to attempt the bankruptcy risk predictor after finishing the basic implementation of the customer support ticket analyzer.
+We decided to attempt the bankruptcy risk predictor after finishing the implementation of a working customer support ticket analyzer.
 
 Bankruptcy Risk (Next-Year) — ML Predictor
 
